@@ -1,11 +1,11 @@
 /* eslint-disable no-alert, no-console */
 const express = require('express')
 const createError = require('http-errors'); 
-// const cors = require('cors')
-// const dotenv = require('dotenv').config();
-// const cookieParser = require('cookie-parser');  
-// const csp = require('express-csp-header');
- 
+const cors = require('cors')
+const dotenv = require('dotenv').config();
+const cookieParser = require('cookie-parser');  
+const csp = require('express-csp-header');
+const log = require('electron-log'); 
  
 // Create express instnace
 const app = express()
@@ -20,18 +20,19 @@ app.use(function(req, res, next) {
   next();
 });
 
-// app.use(csp({
-//   policies: {
-//       'default-src': [csp.SELF, csp.INLINE],
-//       'script-src': [csp.SELF, csp.INLINE],
-//       'style-src': [csp.SELF, csp.INLINE],
-//       'img-src': ['data:', csp.SELF],
-//       'worker-src': [csp.NONE],
-//       'block-all-mixed-content': false
-//   }
-// }));
+app.use(csp({
+  policies: {
+      'default-src': [csp.SELF, csp.INLINE],
+      'script-src': [csp.SELF, csp.INLINE],
+      'style-src': [csp.SELF, csp.INLINE],
+      'img-src': ['data:', csp.SELF],
+      'worker-src': [csp.NONE],
+      'block-all-mixed-content': false
+  }
+}));
 
-var md5 = require('md5');
+// const md5 = require('md5');
+// const graphqlHTTP = require('express-graphql')
 
 // Require API routes
 const users = require('./routes/users')

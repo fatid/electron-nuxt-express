@@ -58,14 +58,17 @@ const newWin = () => {
 		}
 		pollServer()
 	} else {
-		// const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-devtools-installer')
+		const { default: installExtension, VUEJS_DEVTOOLS } = require('electron-devtools-installer')
+		
+		win.webContents.once('dom-ready', () => { 
+			installExtension(VUEJS_DEVTOOLS.id).then(name => {
+				console.log(`Added Extension:  ${name}`)
+				win.webContents.openDevTools()
+			}).catch(err => console.log('An error occurred: ', err)) 
+		})
+
 		win.loadURL(_NUXT_URL_)
-		// win.webContents.once('dom-ready', () => { 
-		// 	installExtension(VUEJS_DEVTOOLS.id).then(name => {
-		// 		console.log(`Added Extension:  ${name}`)
-		// 		win.webContents.openDevTools()
-		// 	}).catch(err => console.log('An error occurred: ', err)) 
-		// })
+		
 		// const pollServer = () => {
 		// 	http.get(_NUXT_URL_, (res) => {
 		// 		if (res.statusCode === 200) { win.loadURL(_NUXT_URL_) } else { setTimeout(pollServer, 300) }
