@@ -5,15 +5,14 @@ const router = Router()
  
 // Mock Users
 const users = [
-  { name: 'Fatih' },
+  { name: 'Crm' },
   { name: 'Kiva' },
   { name: 'Sébastien' }
 ]
 
 /* GET users listing. */
 router.get('/users', function (req, res, next) {
-  res.json(users)
-  res.send('hello world')
+  res.json(users) 
 });
 
 /* GET user by ID. */
