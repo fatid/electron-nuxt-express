@@ -1,0 +1,1 @@
+{"lang":"en","ERROR_PAGE":"404","company":"Nuxt,Electron,Express Starter Kit"}
